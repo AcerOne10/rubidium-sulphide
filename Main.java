@@ -1,7 +1,6 @@
 public class Main
 {
 	public static void main(String[] args) {
-		System.out.println(ShieldSwitch.oneEGH(ShieldSwitch.oneEGH("C\\F\\Y\\\\O", '\\'),'\\'));
 		Settings.getPath();
 		Global.startProgram();
 		while(Global.isRunning()) {

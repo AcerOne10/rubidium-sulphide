@@ -40,19 +40,19 @@ public class ProjectConfigaration
 	}
 	
 	public String getProjectRoot() {
-		return proot;
+		return ShieldSwitch.oneEGH(proot, '\\');
 	}
 	
 	public String getJSource() {
-		return jsrc;
+		return ShieldSwitch.oneEGH(jsrc, '\\');
 	}
 	
 	public String getJBin() {
-		return jbin;
+		return ShieldSwitch.oneEGH(jbin, '\\');
 	}
 	
 	public String getPRoot() {
-		return packroot;
+		return ShieldSwitch.oneEGH(packroot, '\\');
 	}
 	
 	public Vector<String> getSubPackages() {
