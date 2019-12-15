@@ -1,9 +1,47 @@
+/*
+ * Part of Rubidium Projects
+ * General Public Licence v3.0, 2019
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+
 import java.io.File;
 
+/**
+* A class used to switch the input to process
+* programs
+*
+*/
 public class ShieldSwitch
 {
+	
+	// Don't let anyone instantiate this class.
+	private ShieldSwitch() {}
+	
+	// Actual process called by other classes
 	public static void switchProcess(String st) 
 	{
+		/*
+		 exit     - Terminate
+		 dir / ls - Directory Listing
+		 newp     - New Project
+		 newf     - New File
+		 loadp    - Load Project
+		 compile  - Compiling the project
+		*/
 		if(st.equals("exit") || st.equals("end")) {
 			Global.endProgram();
 		}
@@ -13,9 +51,12 @@ public class ShieldSwitch
 		else if(st.startsWith("newp")) NewProjectModule.commandLineNewProject(st);
 		else if(st.startsWith("newf")) NewProjectModule.newFile(st);
 		else if(st.startsWith("loadp")) loadProject(st);
+		else if(st.startsWith("compile")) ShieldCompiler.compile(st);
 	}
 	
-	public static void cdSwitch(String st) {
+	// Analagous to "cd" for change directory
+	private static void cdSwitch(String st) {
+		// "cd" -> .. to previous directory
 		if(st.contains("..")) {
 			int nplaces = zeroED(st, '\\') + 2;
 			String tpath = Settings.path;
@@ -28,6 +69,8 @@ public class ShieldSwitch
 			Settings.path = tpath;
 			return;
 		}
+		
+		// Forward Directory Move
 		int indexd = st.indexOf(' ');
 		String args = st.substring(indexd+1);
 		File file = new File(Settings.path+args);
@@ -38,7 +81,8 @@ public class ShieldSwitch
 		Settings.path = Settings.path+args+"\\";
 	}		
 	
-	public static void dirSwitch(String st) {
+	// Analagous to "dir" for directory listing
+	private static void dirSwitch(String st) {
 		System.out.println();
 		if(st.equals("dir")) {
 			File[] f = listFiles(Settings.path);
@@ -77,7 +121,8 @@ public class ShieldSwitch
 		}
 	}	
 	
-	public static void lsSwitch(String st) {
+	// Analagous to "ls" for directory listing
+	private static void lsSwitch(String st) {
 		System.out.println();
 		if(st.equals("ls")) {
 			File[] f = listFiles(Settings.path);
@@ -116,7 +161,7 @@ public class ShieldSwitch
 		}
 	}
 	
-	public static void loadProject(String st) {
+	private static void loadProject(String st) {
 		String pname = st.substring(st.indexOf(" ")+1)+".shieldproject";
 		String lp = (new ProjectConfigaration(pname)).getProjectRoot();
 		if(!(new File(lp)).isDirectory()) {
@@ -147,6 +192,7 @@ public class ShieldSwitch
 		return r;
 	}
 	
+	// Internal Method to list files in a given path
 	public static File[] listFiles(String path) {
 		return (new File(path).listFiles());
 	}
