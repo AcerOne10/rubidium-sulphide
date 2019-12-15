@@ -33,11 +33,18 @@ public class NewProjectModule {
 		}
 	}
 	
-	public static void newFile()
+	public static void newFile(String st)
 	{
-		System.out.println("\nNew Source File");
-		System.out.print("Name: ");
-		String fname = Global.getInput();
+		String fname="";
+		if(st.indexOf(" ") == -1) {
+			System.out.println("\nNew Source File");
+			System.out.print("Name: ");
+			fname = Global.getInput();
+		} else {
+			for(int i = st.indexOf(" ")+1; i < st.length(); i++) {
+				fname+=st.charAt(i);
+			}
+		}
 		String cf = fname;
 		fname+=".java";
 		System.out.print("Package : "+Settings.pconf.getPRoot()+".");

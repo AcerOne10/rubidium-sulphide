@@ -11,7 +11,7 @@ public class ShieldSwitch
 		else if(st.startsWith("ls")) lsSwitch(st);
 		else if(st.startsWith("cd")) cdSwitch(st);
 		else if(st.startsWith("newp")) NewProjectModule.commandLineNewProject(st);
-		else if(st.startsWith("newf")) NewProjectModule.newFile();
+		else if(st.startsWith("newf")) NewProjectModule.newFile(st);
 		else if(st.startsWith("loadp")) loadProject(st);
 	}
 	
