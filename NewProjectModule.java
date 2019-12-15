@@ -3,18 +3,34 @@ import java.util.Vector;
 
 public class NewProjectModule {
 	
-	public static void commandLineNewProject() 
+	public static void commandLineNewProject(String st) 
 	{
-		System.out.println("\nNew eXtensible SHIELD Project Wizard");
-		System.out.print("Project Name : ");
-		String pname = Global.getInput();
-		System.out.print("Source Root              [Java] : "+pname+"\\");
-		String jsrc = Global.getInput();
-		System.out.print("Binaries Root            [Java] : "+pname+"\\");
-		String jbin = Global.getInput();
-		System.out.print("Common Root Package Name [Java] : ");
-		String proot = Global.getInput();
-		newProject(pname, jsrc, jbin, proot);
+		if(st.indexOf(' ') == -1) {
+			System.out.println("\nNew eXtensible SHIELD Project Wizard");
+			System.out.print("Project Name : ");
+			String pname = Global.getInput();
+			System.out.print("Source Root              [Java] : "+pname+"\\");
+			String jsrc = Global.getInput();
+			System.out.print("Binaries Root            [Java] : "+pname+"\\");
+			String jbin = Global.getInput();
+			System.out.print("Common Root Package Name [Java] : ");
+			String proot = Global.getInput();
+			newProject(pname, jsrc, jbin, proot);
+		} else {
+			String args = "";
+			for(int i = st.indexOf(" ")+1; i < st.length(); i++) {
+				args+=st.charAt(i);
+			}
+			System.out.println("\nNew eXtensible SHIELD Project Wizard");
+			System.out.println("Project Name : "+args);
+			System.out.print("Source Root              [Java] : "+args+"\\");
+			String jsrc = Global.getInput();
+			System.out.print("Binaries Root            [Java] : "+args+"\\");
+			String jbin = Global.getInput();
+			System.out.print("Common Root Package Name [Java] : ");
+			String proot = Global.getInput();
+			newProject(args, jsrc, jbin, proot);
+		}
 	}
 	
 	public static void newFile()
