@@ -25,7 +25,8 @@ public class NewFileManager {
 		Vector<String> vcon = new Vector<String>(1,1);
 		for(int i = 0; i < contents.length; i++)
 			vcon.addElement(contents[i]);
-		System.out.println(p+"\\"+fn+".java");
-		StreamFileWriter sfw = new StreamFileWriter(p+"\\"+fn+".java", vcon);
+		String temp = p+"\\"+fn+".java";
+		StreamFileWriter sfw = new StreamFileWriter(ShieldSwitch.oneEGH(temp, '\\'), vcon);
+		sfw.write();
 	}
 }

@@ -40,7 +40,7 @@ public class NewProjectModule {
 		}
 		try {
 			(new File(Settings.pconf.getJSource()+"\\"+pack+"\\"+fname)).createNewFile();
-			NewFileManager nfm = new NewFileManager(cf, Settings.pconf.getJSource()+"\\"+pack, cp);
+			NewFileManager nfm = new NewFileManager(cf, Settings.pconf.getJSource()+"\\"+pack, Settings.pconf.getPRoot()+"."+cp);
 			nfm.create();
 		} catch(IOException ioe) {
 			ioe.printStackTrace();
