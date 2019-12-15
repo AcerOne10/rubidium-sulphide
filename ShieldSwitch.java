@@ -136,27 +136,14 @@ public class ShieldSwitch
 	
 	// Replace Multiple Simultaneous Occurances
 	public static String oneEGH(String st, char ch) {
-		String r="";
+		String r=" ";
 		for(int i = 0; i < st.length(); i++) {
-			if(i == st.length() - 1) break;
-			if(st.charAt(i) == ch) {
-				try {
-					int j = 0;
-					for(j = i; true; j++)
-						if(st.charAt(j+1) != ch)
-							break;
-					r+=st.charAt(i);
-					i+=j+1;
-				} catch(StringIndexOutOfBoundsException sioobe) {
-					continue;
-				}
-			}
-			try {
-				st+=st.charAt(i);
-			} catch(StringIndexOutOfBoundsException sioobe) {
-				continue;
-			}
+			char tobe = st.charAt(i);
+			char last = r.charAt(r.length()-1);
+			if(tobe == last) continue;
+			r+=tobe;
 		}
+		r=r.trim();
 		return r;
 	}
 	
